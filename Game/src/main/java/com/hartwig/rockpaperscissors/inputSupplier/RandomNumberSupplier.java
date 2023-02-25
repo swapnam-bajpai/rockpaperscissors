@@ -1,4 +1,4 @@
-package com.hartwig.rockpaperscissors;
+package com.hartwig.rockpaperscissors.inputSupplier;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;

@@ -1,4 +1,6 @@
-package com.hartwig.rockpaperscissors;
+package com.hartwig.rockpaperscissors.inputSupplier;
+
+import com.hartwig.rockpaperscissors.model.RockScissorsPaperException;
 
 import java.io.BufferedReader;
 import java.util.concurrent.Callable;

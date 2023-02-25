@@ -1,4 +1,4 @@
-package com.hartwig.rockpaperscissors;
+package com.hartwig.rockpaperscissors.model;
 
 public class RockScissorsPaperException extends RuntimeException {
     public RockScissorsPaperException(String message, Throwable cause) {

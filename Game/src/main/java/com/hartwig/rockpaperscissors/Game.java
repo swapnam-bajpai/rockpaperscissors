@@ -1,51 +1,36 @@
 package com.hartwig.rockpaperscissors;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import com.hartwig.rockpaperscissors.model.GameEntity;
 
-import static com.hartwig.rockpaperscissors.GameUtils.*;
+import static com.hartwig.rockpaperscissors.util.GameUtils.*;
 
 public class Game implements Runnable {
-    private final BufferedReader inputReader;
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
 
-
-    public Game() {
-        this.inputReader = new BufferedReader(new InputStreamReader(System.in));
+    public Game(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
-    public void
-    run() {
-        try {
-            getUserNameCreatePlayers();
-        } catch (IOException e) {
-            throw new RockScissorsPaperException("Error in getting user name from command line!", e);
-        }
+    public void run() {
         printRules(player1.getUserName(), player2.getUserName());
         runGameLoop();
     }
 
-    private void getUserNameCreatePlayers() throws IOException {
-        System.out.println("Please enter user name");
-        player1 = new Player(parseUserName(inputReader.readLine()), new CommandLineSupplier(inputReader));
-        player2 = new Player(COMPUTER_USER_NAME, new RandomNumberSupplier(LOWER_BOUND, UPPER_BOUND));
-    }
-
     private void runGameLoop() {
         while (true) {
-            int userChoice = player1.getNextInput();
-            if (isWrongChoice(userChoice)) {
+            int player1Choice = player1.getNextInput();
+            if (isWrongChoice(player1Choice)) {
                 printInputError();
                 continue;
             }
-            if (isExitChoice(userChoice)) {
+            if (isExitChoice(player1Choice)) {
                 printSummary(player1);
                 break;
             }
-            int computerChoice = player2.getNextInput();
-            playGame(userChoice, computerChoice);
+            int player2Choice = player2.getNextInput();
+            playGame(player1Choice, player2Choice);
         }
     }
 
@@ -69,7 +54,6 @@ public class Game implements Runnable {
     private void printChoicesUpdateStats(GameEntity entity1, GameEntity entity2) {
         System.out.printf("%s chose : %s, %s chose : %s%n",
                 player1.getUserName(), entity1, player2.getUserName(), entity2);
-
         player1.addGame();
         player2.addGame();
     }

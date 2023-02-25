@@ -1,10 +1,12 @@
-package com.hartwig.rockpaperscissors;
+package com.hartwig.rockpaperscissors.util;
 
 import com.google.common.collect.ImmutableMap;
+import com.hartwig.rockpaperscissors.Player;
+import com.hartwig.rockpaperscissors.model.GameEntity;
 
 import java.util.Map;
 
-import static com.hartwig.rockpaperscissors.GameEntity.*;
+import static com.hartwig.rockpaperscissors.model.GameEntity.*;
 
 public final class GameUtils {
     public static final int LOWER_BOUND = 1;
