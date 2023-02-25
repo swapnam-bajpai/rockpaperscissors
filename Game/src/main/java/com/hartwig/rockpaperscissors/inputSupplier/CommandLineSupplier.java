@@ -18,6 +18,15 @@ public class CommandLineSupplier implements Supplier<Integer> {
         };
     }
 
+    @Override
+    public Integer get() {
+        try {
+            return commandLineReader.call();
+        } catch (Exception e) {
+            throw new RockScissorsPaperException("Could not read choice from command line\n", e);
+        }
+    }
+
     private void printInputMessage() {
         System.out.println("Choose wisely : 1. ROCK 2. PAPER 3. SCISSORS 4. EXIT GAME");
     }
@@ -28,15 +37,6 @@ public class CommandLineSupplier implements Supplier<Integer> {
         } catch (NumberFormatException e) {
             System.out.printf("Detected non integer input %s%n", input);
             return INVALID_INPUT;
-        }
-    }
-
-    @Override
-    public Integer get() {
-        try {
-            return commandLineReader.call();
-        } catch (Exception e) {
-            throw new RockScissorsPaperException("Could not read choice from command line\n", e);
         }
     }
 }
