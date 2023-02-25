@@ -1,11 +1,15 @@
 package com.hartwig.rockpaperscissors;
 
+import java.util.function.Supplier;
+
 public class Player {
     private final String userName;
+    private final Supplier<Integer> inputSupplier;
     private final GamesStatistics gamesStatistics;
 
-    public Player(String userName) {
+    public Player(String userName, Supplier<Integer> inputSupplier) {
         this.userName = userName;
+        this.inputSupplier = inputSupplier;
         gamesStatistics = new GamesStatistics();
     }
 
@@ -13,12 +17,20 @@ public class Player {
         return userName;
     }
 
-    public void printSummary() {
-        System.out.println("Games played :" + gamesStatistics.getGamesPlayed());
-        System.out.println("Games won :" + gamesStatistics.getGamesWon());
-        System.out.println("Games lost :" + gamesStatistics.getGamesLost());
-        System.out.println("Games tied :" +
-                (gamesStatistics.getGamesPlayed() - gamesStatistics.getGamesWon() - gamesStatistics.getGamesLost()));
+    public int getNextInput() {
+        return inputSupplier.get();
+    }
+
+    public int getGamesPlayed() {
+        return gamesStatistics.getGamesPlayed();
+    }
+
+    public int getGamesWon() {
+        return gamesStatistics.getGamesWon();
+    }
+
+    public int getGamesLost() {
+        return gamesStatistics.getGamesLost();
     }
 
     void addGame() {
