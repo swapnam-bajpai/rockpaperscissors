@@ -26,7 +26,7 @@ public class CommandLineSupplier implements Supplier<Integer> {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.printf("Detected non integer input %s", input);
+            System.out.printf("Detected non integer input %s%n", input);
             return INVALID_INPUT;
         }
     }
@@ -36,7 +36,7 @@ public class CommandLineSupplier implements Supplier<Integer> {
         try {
             return commandLineReader.call();
         } catch (Exception e) {
-            throw new RockScissorsPaperException("Could not read choice from command line", e);
+            throw new RockScissorsPaperException("Could not read choice from command line\n", e);
         }
     }
 }
