@@ -5,7 +5,7 @@ public class AppDriver {
         try {
             new Game().run();
         } catch (Exception e) {
-            System.out.println("Error while running Rock Paper Scissors. Exiting program");
+            System.out.println("Error while running Rock Paper Scissors. Exiting program!");
             throw e;
         }
     }

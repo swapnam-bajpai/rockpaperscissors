@@ -19,11 +19,11 @@ public class Game implements Runnable {
     public void run() {
         try {
             getUserNameCreatePlayers();
-            printRules();
-            runGameLoop();
         } catch (IOException e) {
-            System.out.println("Error in interacting with command line!");
+            throw new RockScissorsPaperException("Error in getting user name from command line!", e);
         }
+        printRules(player1.getUserName(), player2.getUserName());
+        runGameLoop();
     }
 
     private void getUserNameCreatePlayers() throws IOException {
@@ -32,17 +32,7 @@ public class Game implements Runnable {
         player2 = new Player(COMPUTER_USER_NAME, new RandomNumberSupplier(LOWER_BOUND, UPPER_BOUND));
     }
 
-    private void printRules() {
-        System.out.printf("""
-                        Welcome to rock paper scissors %s.\s
-                        ROCK BEATS SCISSORS BEAT PAPER BEATS ROCK\s
-                        You will be choosing one of the three in each game against %s.\s
-                        At the end you will be provided a summary of your performance over all games.\s
-                        """,
-                player1.getUserName(), player2.getUserName());
-    }
-
-    private void runGameLoop() throws IOException {
+    private void runGameLoop() {
         while (true) {
             int userChoice = player1.getNextInput();
             if (isExitChoice(userChoice)) {
@@ -61,12 +51,8 @@ public class Game implements Runnable {
     private void playGame(int choice1, int choice2) {
         GameEntity player1Entity = getGameEntity(choice1);
         GameEntity player2Entity = getGameEntity(choice2);
-        System.out.printf("%s chose : %s, %s chose : %s%n",
-                player1.getUserName(), player1Entity,
-                player2.getUserName(), player2Entity);
 
-        player1.addGame();
-        player2.addGame();
+        printChoicesUpdateStats(player1Entity, player2Entity);
 
         if (player1Entity == player2Entity) {
             System.out.println("It was a tie!");
@@ -77,6 +63,14 @@ public class Game implements Runnable {
         } else {
             declareWinnerUpdateStats(player2, player1);
         }
+    }
+
+    private void printChoicesUpdateStats(GameEntity entity1, GameEntity entity2) {
+        System.out.printf("%s chose : %s, %s chose : %s%n",
+                player1.getUserName(), entity1, player2.getUserName(), entity2);
+
+        player1.addGame();
+        player2.addGame();
     }
 
     private void declareWinnerUpdateStats(Player winner, Player loser) {

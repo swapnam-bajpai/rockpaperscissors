@@ -28,12 +28,23 @@ public final class GameUtils {
         return ENTITY_BY_CHOICE.get(choice);
     }
 
+    public static void printRules(String userName1, String userName2) {
+        System.out.printf("""
+                        Welcome to rock paper scissors %s %s.\s
+                        ROCK BEATS SCISSORS BEAT PAPER BEATS ROCK\s
+                        You will be choosing one of the three in each game against each other.\s
+                        At the end you will be provided a summary of your performance over all games.\s
+                        """,
+                userName1, userName2);
+    }
+
     public static void printSummary(Player player) {
         System.out.println("Games played :" + player.getGamesPlayed());
         System.out.println("Games won :" + player.getGamesWon());
         System.out.println("Games lost :" + player.getGamesLost());
         System.out.println("Games tied :" +
                 (player.getGamesPlayed() - player.getGamesWon() - player.getGamesLost()));
+        System.out.println("Thank you for playing Rock Paper Scissors. Tot ziens!");
     }
 
     public static boolean doesDefeat(GameEntity first, GameEntity second) {

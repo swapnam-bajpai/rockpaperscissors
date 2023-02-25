@@ -23,7 +23,7 @@ public class CommandLineSupplier implements Supplier<Integer> {
         try {
             return commandLineReader.call();
         } catch (Exception e) {
-            throw new RockScissorsPaperException("Could not read command line input", e);
+            throw new RockScissorsPaperException("Could not read choice from command line", e);
         }
     }
 }
