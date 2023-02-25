@@ -29,20 +29,20 @@ public class Game implements Runnable {
 
     private void getUserNameCreatePlayers() throws IOException {
         System.out.println("Please enter user name");
-        player1 = new Player(inputReader.readLine(), new CommandLineSupplier(inputReader));
+        player1 = new Player(parseUserName(inputReader.readLine()), new CommandLineSupplier(inputReader));
         player2 = new Player(COMPUTER_USER_NAME, new RandomNumberSupplier(LOWER_BOUND, UPPER_BOUND));
     }
 
     private void runGameLoop() {
         while (true) {
             int userChoice = player1.getNextInput();
-            if (isExitChoice(userChoice)) {
-                printSummary(player1);
-                break;
-            }
             if (isWrongChoice(userChoice)) {
                 printInputError();
                 continue;
+            }
+            if (isExitChoice(userChoice)) {
+                printSummary(player1);
+                break;
             }
             int computerChoice = player2.getNextInput();
             playGame(userChoice, computerChoice);

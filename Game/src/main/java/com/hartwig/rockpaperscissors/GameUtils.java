@@ -10,7 +10,9 @@ public final class GameUtils {
     public static final int LOWER_BOUND = 1;
     public static final int UPPER_BOUND = 3;
     public static final int EXIT_GAME = 4;
+
     public static final String COMPUTER_USER_NAME = "TuringMachine";
+    private static final String ANON_USER_NAME = "Anonymous";
     private static final Map<Integer, GameEntity> ENTITY_BY_CHOICE =
             ImmutableMap.<Integer, GameEntity>builder()
                     .put(1, ROCK)
@@ -28,6 +30,13 @@ public final class GameUtils {
         return ENTITY_BY_CHOICE.get(choice);
     }
 
+    public static String parseUserName(String input) {
+        if (input == null || input.isBlank()) {
+            return ANON_USER_NAME;
+        }
+        return input;
+    }
+
     public static void printRules(String userName1, String userName2) {
         System.out.printf("""
                         Welcome to Rock Paper Scissors %s and %s.\s
@@ -39,11 +48,11 @@ public final class GameUtils {
     }
 
     public static void printSummary(Player player) {
-        System.out.printf("Thank you for playing Rock Paper Scissors. Here are the stats for %s :", player.getUserName());
-        System.out.printf("Games played : %d", player.getGamesPlayed());
-        System.out.printf("Games won : %d", player.getGamesWon());
-        System.out.printf("Games lost : %d" + player.getGamesLost());
-        System.out.printf("Games tied : %d", (player.getGamesPlayed() - player.getGamesWon() - player.getGamesLost()));
+        System.out.printf("Thank you for playing Rock Paper Scissors. Here are the stats for %s :%n", player.getUserName());
+        System.out.printf("Games played : %d%n", player.getGamesPlayed());
+        System.out.printf("Games won : %d%n", player.getGamesWon());
+        System.out.printf("Games lost : %d%n", player.getGamesLost());
+        System.out.printf("Games tied : %d%n", (player.getGamesPlayed() - player.getGamesWon() - player.getGamesLost()));
     }
 
     public static boolean doesDefeat(GameEntity first, GameEntity second) {
