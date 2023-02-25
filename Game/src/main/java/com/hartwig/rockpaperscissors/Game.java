@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.hartwig.rockpaperscissors.GameEntity.*;
 
 public class Game implements Runnable {
-    private static final Map<Integer, GameEntity> ENTITY_BY_USER_CHOICE =
+    private static final Map<Integer, GameEntity> ENTITY_BY_CHOICE =
             ImmutableMap.<Integer, GameEntity>builder()
                     .put(1, ROCK)
                     .put(2, PAPER)
@@ -36,6 +36,11 @@ public class Game implements Runnable {
         }
     }
 
+    private void getUserName() throws IOException {
+        System.out.println("Please enter user name");
+        this.player = new Player(inputReader.readLine());
+    }
+
     private void printGameWelcome() {
         System.out.printf("""
                         Welcome to rock paper scissors %s.\s
@@ -44,11 +49,6 @@ public class Game implements Runnable {
                         At the end you will be provided a summary of your performance over all games.\s
                         """,
                 player.getUserName());
-    }
-
-    private void getUserName() throws IOException {
-        System.out.println("Please enter user name");
-        this.player = new Player(inputReader.readLine());
     }
 
     private void runGameLoop() throws IOException {
@@ -72,7 +72,7 @@ public class Game implements Runnable {
     }
 
     private boolean isWrongChoice(int choice) {
-        return ENTITY_BY_USER_CHOICE.containsKey(choice);
+        return !ENTITY_BY_CHOICE.containsKey(choice);
     }
 
     private void printInputError() {
@@ -86,11 +86,11 @@ public class Game implements Runnable {
     }
 
     private GameEntity getUserEntity(int userChoice) {
-        return ENTITY_BY_USER_CHOICE.get(userChoice);
+        return ENTITY_BY_CHOICE.get(userChoice);
     }
 
     private GameEntity getComputerEntity() {
-        return ENTITY_BY_USER_CHOICE.get(ThreadLocalRandom.current().nextInt(1, 4));
+        return ENTITY_BY_CHOICE.get(ThreadLocalRandom.current().nextInt(1, 4));
     }
 
     private void calculateWinnerPrintResult(GameEntity userEntity, GameEntity computerEntity) {
