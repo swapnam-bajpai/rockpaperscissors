@@ -16,7 +16,8 @@ public class Game implements Runnable {
         this.inputReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public void run() {
+    public void
+    run() {
         try {
             getUserNameCreatePlayers();
         } catch (IOException e) {
