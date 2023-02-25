@@ -71,6 +71,6 @@ public final class GameUtils {
     }
 
     public static void printInputError() {
-        System.out.printf("Please enter from one of the possible set of choices %d-%d%n", LOWER_BOUND, EXIT_GAME);
+        System.out.printf("Both players need to enter from one of the possible set of choices %d-%d%n", LOWER_BOUND, EXIT_GAME);
     }
 }

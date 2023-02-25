@@ -21,15 +21,16 @@ public class Game implements Runnable {
     private void runGameLoop() {
         while (true) {
             int player1Choice = player1.getNextInput();
-            if (isWrongChoice(player1Choice)) {
+            int player2Choice = player2.getNextInput();
+            if (isWrongChoice(player1Choice) || isWrongChoice(player2Choice)) {
                 printInputError();
                 continue;
             }
-            if (isExitChoice(player1Choice)) {
+            if (isExitChoice(player1Choice) || isExitChoice(player2Choice)) {
                 printSummary(player1);
                 break;
             }
-            int player2Choice = player2.getNextInput();
+
             playGame(player1Choice, player2Choice);
         }
     }

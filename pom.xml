@@ -14,9 +14,6 @@
     </modules>
 
     <properties>
-        <guava-version>31.1-jre</guava-version>
-        <junit-jupiter-version>>5.9.2</junit-jupiter-version>
-        <mockito-version>5.1.1</mockito-version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,24 +21,21 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>${guava-version}</version>
+                <version>31.1-jre</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter-version}</version>
+                <artifactId>junit-jupiter</artifactId>
+                <version>5.9.2</version>
                 <scope>test</scope>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>${mockito-version}</version>
+                <version>5.1.1</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
