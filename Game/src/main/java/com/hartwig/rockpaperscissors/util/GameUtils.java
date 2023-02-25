@@ -12,6 +12,7 @@ public final class GameUtils {
     public static final int LOWER_BOUND = 1;
     public static final int UPPER_BOUND = 3;
     public static final int EXIT_GAME = 4;
+    public static final int INVALID_INPUT = -1;
 
     public static final String COMPUTER_USER_NAME = "TuringMachine";
     private static final String ANON_USER_NAME = "Anonymous";
