@@ -2,23 +2,27 @@ package com.hartwig.rockpaperscissors;
 
 import java.util.function.Supplier;
 
+/**
+ * <ul>
+ *     <li>Class to emulate participants in a Rock, Paper, Scissors game</li>
+ *     <li>Every Player in instantiated with a name and a supplier of its inputs to the game</li>
+ *     <li>This can be any source of integers such as : command line, file input, random number generator etc.</li>
+ *     <li>Player maintains a summary of its game statistics and provides a public API to get number of games played, won and lost</li>
+ * </ul>
+ */
 public class Player {
-    private final String userName;
+    private final String name;
     private final Supplier<Integer> inputSupplier;
     private final GamesStatistics gamesStatistics;
 
-    public Player(String userName, Supplier<Integer> inputSupplier) {
-        this.userName = userName;
+    public Player(String name, Supplier<Integer> inputSupplier) {
+        this.name = name;
         this.inputSupplier = inputSupplier;
         gamesStatistics = new GamesStatistics();
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public int getNextInput() {
-        return inputSupplier.get();
+    public String getName() {
+        return name;
     }
 
     public int getGamesPlayed() {
@@ -31,6 +35,10 @@ public class Player {
 
     public int getGamesLost() {
         return gamesStatistics.getGamesLost();
+    }
+
+    int getNextInput() {
+        return inputSupplier.get();
     }
 
     void addGame() {

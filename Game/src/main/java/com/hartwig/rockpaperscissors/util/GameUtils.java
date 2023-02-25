@@ -51,7 +51,7 @@ public final class GameUtils {
     }
 
     public static void printSummary(Player player) {
-        System.out.printf("Thank you for playing Rock Paper Scissors. Here are the stats for %s :%n", player.getUserName());
+        System.out.printf("Thank you for playing Rock Paper Scissors. Here are the stats for %s :%n", player.getName());
         System.out.printf("Games played : %d%n", player.getGamesPlayed());
         System.out.printf("Games won : %d%n", player.getGamesWon());
         System.out.printf("Games lost : %d%n", player.getGamesLost());
